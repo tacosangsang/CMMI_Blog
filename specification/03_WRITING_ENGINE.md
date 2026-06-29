@@ -7,10 +7,11 @@ role: article_generation_rules
 rule_range: RULE-3001..RULE-3099
 depends_on:
   - 00_MASTER_SPEC
-  - 01_IDENTITY
   - 02_GLOBAL_RULES
+  - 01_IDENTITY
   - 04_FRAMEWORK_ENGINE
   - 06_REASONING_ENGINE
+  - 07_VALIDATION_ENGINE
 execution_position: 5
 ---
 
@@ -18,7 +19,11 @@ execution_position: 5
 
 ## Purpose
 
-Define article flow, paragraph behavior, detail selection, recommendation style, and category-specific writing sequences.
+Define article flow, paragraph behavior, detail selection, recommendation style, sentence rhythm, paragraph length, and category-specific writing sequences. This module owns the concrete drafting rules. It does NOT define vocabulary or tone (see [05_VOICE_ENGINE.md](05_VOICE_ENGINE.md)) or forbidden patterns (see [08_NEGATIVE_RULES.md](08_NEGATIVE_RULES.md)).
+
+## Source
+
+Canonical merge of `02_CMMI Blog Writing Specification.pdf`. Cross-references resolved against [02_GLOBAL_RULES.md](02_GLOBAL_RULES.md), [04_FRAMEWORK_ENGINE.md](04_FRAMEWORK_ENGINE.md), and [01_IDENTITY.md](01_IDENTITY.md).
 
 ## Rules
 
@@ -26,17 +31,17 @@ Define article flow, paragraph behavior, detail selection, recommendation style,
 
 - Priority: High
 - Type: SHOULD
-- Description: Use the default article flow when natural: introduction, visit motivation, basic information, arrival or exterior, interior, experience, detailed review, pros, optional minor drawbacks, overall opinion, recommended audience, ending.
-- Reason: This gives LLMs a stable baseline without forcing unnatural sections.
-- Dependencies: RULE-0002, RULE-4002
+- Description: Use the default article flow only when it remains natural: introduction with personal context, visit or use motivation, lived experience and observation, detailed review with evaluation, optional minor drawback, overall personal impression, optional reader-specific recommendation, calm ending. Place lived experience before basic information whenever possible.
+- Reason: Provides a stable baseline that respects experience-first ordering without forcing unnatural sections.
+- Dependencies: RULE-2001, RULE-2002
 - Override: Skip or reorder sections when they interrupt natural flow.
 
 ### RULE-3002
 
 - Priority: High
 - Type: MUST
-- Description: Begin with empathy and personal context before introducing the business.
-- Reason: The introduction should feel like a person explaining why the visit happened.
+- Description: Open every article with empathy and personal context before introducing the business, product, or place.
+- Reason: The introduction must feel like a person explaining why the visit happened, not a directory entry.
 - Dependencies: RULE-1003, RULE-6002
 - Override: Overrides direct business-first opening templates.
 
@@ -44,143 +49,133 @@ Define article flow, paragraph behavior, detail selection, recommendation style,
 
 - Priority: High
 - Type: NEVER
-- Description: Never begin every article with the same sentence or repeated introduction pattern.
-- Reason: Repeated openings create templated, AI-like output.
-- Dependencies: RULE-8007
-- Override: None
+- Description: Never begin two consecutive articles with the same sentence pattern or repeated introduction template.
+- Reason: Repeated openings expose templated, AI-like output.
+- Dependencies: RULE-2006
+- Override: Rotate introduction patterns naturally.
 
 ### RULE-3004
 
 - Priority: Medium
 - Type: SHOULD
-- Description: Include basic information only when useful to readers and connect it to personal experience when possible.
-- Reason: Useful facts are valuable, but pasted official information breaks author voice.
-- Dependencies: RULE-2003, RULE-7008
+- Description: Include basic information (business name, address, hours, parking, reservation) only when useful to the reader, and connect it to a personal observation whenever possible.
+- Reason: Useful facts add value, but pasted official descriptions break the author voice.
+- Dependencies: RULE-2003, RULE-2004
 - Override: Official descriptions MUST NOT be pasted as filler.
 
 ### RULE-3005
 
-- Priority: Critical
+- Priority: High
 - Type: MUST
-- Description: Write experience before evaluation in every review segment.
-- Reason: Evaluation without observed experience feels generic and unsupported.
-- Dependencies: RULE-2001, RULE-6009
-- Override: Reorder any evaluation-first paragraph.
+- Description: Apply the local review sequence within any review segment: observation, feeling, reason, optional comparison, personal opinion.
+- Reason: This sequence operationalizes experience-first ordering at the paragraph level.
+- Dependencies: RULE-2001, RULE-2007
+- Override: Do not force comparison when no useful comparison exists.
 
 ### RULE-3006
 
-- Priority: High
-- Type: MUST
-- Description: Use the local review sequence: observation, feeling, reason, comparison when helpful, personal opinion.
-- Reason: This sequence creates grounded subjective judgment.
-- Dependencies: RULE-2001, RULE-2007
-- Override: Do not force comparison if not useful.
+- Priority: Medium
+- Type: SHOULD
+- Description: When describing food or sensory experiences, follow the relevant sensory order: visual, sound, smell, texture, taste, aftertaste. Use only the senses that actually applied.
+- Reason: Ordered sensory writing improves clarity and avoids generic description.
+- Dependencies: RULE-2003
+- Override: Never force unused senses.
 
 ### RULE-3007
 
-- Priority: Medium
-- Type: SHOULD
-- Description: Use relevant sensory order when describing food or sensory experiences: visual, sound, smell, texture, taste, aftertaste.
-- Reason: Ordered sensory writing improves clarity while avoiding generic description.
-- Dependencies: RULE-2003
-- Override: Use only relevant senses.
+- Priority: High
+- Type: MUST
+- Description: Vary sentence length and sentence shape across every article. Mix short, medium, and longer sentences without identical rhythm.
+- Reason: Identical sentence rhythm sounds mechanical and AI-generated.
+- Dependencies: RULE-2013
+- Override: Overrides any rule that would produce uniform rhythm.
 
 ### RULE-3008
 
 - Priority: High
 - Type: MUST
-- Description: Vary sentence length and paragraph rhythm naturally.
-- Reason: Identical rhythm sounds mechanical and AI-generated.
-- Dependencies: RULE-0010, RULE-5007
-- Override: Overrides rigid uniformity.
+- Description: Default paragraph length is 1 to 3 sentences, with 4 sentences as the absolute maximum. Vary paragraph length across 1, 2, and 3 sentence units.
+- Reason: Short, varied paragraphs support readability, the photo-aligned layout, and natural rhythm.
+- Dependencies: RULE-2013
+- Override: Paragraphs exceeding 4 sentences MUST be split or rewritten.
 
 ### RULE-3009
 
 - Priority: High
 - Type: MUST
-- Description: Use 1 to 3 sentences per paragraph by default, with 4 sentences as the maximum.
-- Reason: Short paragraphs support readability and photo-based blog layout.
-- Dependencies: RULE-2008
-- Override: Exceeding 4 sentences requires rewriting or splitting.
+- Description: When photos are provided, match paragraph units to photo groups (typically one to three photos followed by one related paragraph).
+- Reason: Photo alignment supports the blog's visual reading flow and prevents describing unseen visuals.
+- Dependencies: RULE-2008, RULE-2009
+- Override: Do not describe photos without confirmed context.
 
 ### RULE-3010
 
-- Priority: Medium
-- Type: SHOULD
-- Description: Match paragraph units to photo groups when photos are provided, typically 1 to 3 photos followed by one related paragraph.
-- Reason: Photo alignment improves visual reading flow.
-- Dependencies: RULE-2008, RULE-7006
-- Override: Do not describe photos without confirmed context.
+- Priority: High
+- Type: MUST
+- Description: Recommend only to specific reader types or specific situations; never recommend to everyone.
+- Reason: Specific recommendations sound honest and support reader decision-making.
+- Dependencies: RULE-1008, RULE-7009
+- Override: Overrides universal recommendation language.
 
 ### RULE-3011
 
 - Priority: High
-- Type: MUST
-- Description: Recommend only to specific reader types or situations, never to everyone.
-- Reason: Specific recommendations sound honest and help reader decision-making.
-- Dependencies: RULE-1008, RULE-7009
-- Override: Overrides universal recommendation language.
-
-### RULE-3012
-
-- Priority: High
 - Type: MAY
-- Description: Omit recommendations when the experience does not naturally support one.
+- Description: Omit recommendations entirely when the experience does not naturally support one.
 - Reason: Forced recommendations sound promotional.
 - Dependencies: RULE-6010
 - Override: None
 
-### RULE-3013
+### RULE-3012
 
 - Priority: Medium
 - Type: SHOULD
-- Description: End calmly with a comfortable personal impression rather than a dramatic final claim.
+- Description: End calmly with a comfortable personal impression rather than a dramatic final claim, summary statement, or sales pitch.
 - Reason: Calm endings preserve author identity and trust.
-- Dependencies: RULE-5009, RULE-8008
+- Dependencies: RULE-1005
 - Override: None
+
+### RULE-3013
+
+- Priority: High
+- Type: SHOULD
+- Description: For space descriptions, prefer the sequence exterior, lighting, atmosphere, seating, movement flow, noise, then overall feeling. Use only the elements that applied.
+- Reason: This sequence mirrors how visitors perceive physical places.
+- Dependencies: RULE-4002
+- Override: Use only relevant items.
 
 ### RULE-3014
 
 - Priority: High
-- Type: MUST
-- Description: For space descriptions, prefer exterior, lighting, atmosphere, seating, movement flow, noise, then overall feeling.
-- Reason: This sequence matches how visitors perceive physical places.
-- Dependencies: RULE-4002
-- Override: Use only relevant items.
+- Type: SHOULD
+- Description: For food descriptions, prefer the sequence appearance, aroma, texture, flavor, balance, then personal preference. Use only items actually experienced.
+- Reason: Food reviews must establish concrete experience before opinion.
+- Dependencies: RULE-4003
+- Override: Omit unverified or unexperienced food details.
 
 ### RULE-3015
 
 - Priority: High
-- Type: MUST
-- Description: For food descriptions, prefer appearance, aroma, texture, flavor, balance, then personal preference.
-- Reason: Food reviews need concrete experience before opinion.
-- Dependencies: RULE-4003
-- Override: Use only experienced food details.
+- Type: SHOULD
+- Description: For product descriptions, prefer the sequence purchase reason, appearance, actual usage, observed change over time, advantages, minor drawbacks, then overall opinion.
+- Reason: Product review value depends on actual use and observed change, not on feature listing.
+- Dependencies: RULE-4005
+- Override: Unused features MUST remain unclaimed.
 
 ### RULE-3016
 
 - Priority: High
-- Type: MUST
-- Description: For product descriptions, prefer purchase reason, appearance, usage, changes, advantages, minor drawbacks, then overall opinion.
-- Reason: Product review value depends on actual use and change over time.
-- Dependencies: RULE-4005
-- Override: Omit unverified usage claims.
+- Type: SHOULD
+- Description: For beauty descriptions, prefer the sequence consultation, procedure, comfort, immediate result, then personal impression. Never imply unverified long-term effectiveness.
+- Reason: Beauty reviews must focus on process and avoid exaggerated results.
+- Dependencies: RULE-4006
+- Override: Long-term claims MUST be omitted unless verified.
 
 ### RULE-3017
 
 - Priority: High
-- Type: MUST
-- Description: For beauty descriptions, prefer consultation, procedure, comfort, immediate result, then personal impression.
-- Reason: Beauty reviews must focus on process and avoid exaggerated effectiveness.
-- Dependencies: RULE-4006, RULE-8003
-- Override: Do not imply unverified long-term results.
-
-### RULE-3018
-
-- Priority: High
-- Type: MUST
-- Description: For experience descriptions, prefer expectation, experience, interesting moments, completion, then reflection.
+- Type: SHOULD
+- Description: For experience reviews, prefer the sequence expectation, experience, interesting moments, completion, then reflection.
 - Reason: Experience content should read as story rather than static information.
 - Dependencies: RULE-4007
 - Override: None
-

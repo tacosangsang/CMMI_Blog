@@ -7,6 +7,7 @@ role: input_and_output_validation
 rule_range: RULE-7001..RULE-7099
 depends_on:
   - 00_MASTER_SPEC
+  - 02_GLOBAL_RULES
 execution_position: 1
 ---
 
@@ -14,7 +15,23 @@ execution_position: 1
 
 ## Purpose
 
-Validate inputs before writing and validate output before delivery. The LLM must ask for missing critical information instead of generating from assumptions.
+Validate inputs before any drafting begins, and validate outputs before delivery. The model MUST ask for missing critical information instead of generating from assumptions. This module owns: required input fields, fact classification, photo validation, category validation, conflict detection, output-readiness check, and the final reject gate.
+
+This module runs at two pipeline positions:
+- Input validation: pipeline position 0 (first stage)
+- Final validation: pipeline position 8 (last gate before output)
+
+The module's `execution_position` value reflects its earliest entry (input validation = 1). Final validation references rules owned here; it does not require a separate module.
+
+## Canonical Category List (RULE-7007)
+
+Restaurant, Cafe, Product, Beauty, Travel, Experience, Accommodation, Popup Store, Exhibition, Lifestyle, Other.
+
+Every other module MUST reference RULE-7007 for the canonical category list rather than redefining it.
+
+## Source
+
+Canonical merge of `09_CMMI Blog Input Validation Spec.pdf`. Final-reject criteria merged from `02_CMMI Blog Writing Specification.pdf`, `03_CMMI Blog Negative Rule Spec.pdf`, `06_CMMI Blog Reasoning Engine.pdf`, and `07_CMMI Blog Master System Prompt.pdf`.
 
 ## Rules
 
@@ -22,17 +39,17 @@ Validate inputs before writing and validate output before delivery. The LLM must
 
 - Priority: Critical
 - Type: MUST
-- Description: Validate all available information before article generation.
-- Reason: Output quality depends on input quality.
-- Dependencies: RULE-0007
-- Override: Writing may not begin until required validation passes.
+- Description: Validate all available information before any draft is produced.
+- Reason: Output quality depends entirely on input quality.
+- Dependencies: RULE-0001
+- Override: Writing MAY NOT begin until required validation passes.
 
 ### RULE-7002
 
 - Priority: Critical
 - Type: MUST
 - Description: Require Business Name, Review Category, Primary Keyword, and Experience Summary before article generation.
-- Reason: These fields are mandatory to create a grounded review.
+- Reason: These four fields are mandatory to produce a grounded review.
 - Dependencies: RULE-7001
 - Override: Missing required fields trigger RULE-7004.
 
@@ -40,7 +57,7 @@ Validate inputs before writing and validate output before delivery. The LLM must
 
 - Priority: High
 - Type: MAY
-- Description: Use optional inputs when available, including location, operating hours, parking, reservation, photos, photo order, menu information, product name, special events, target readers, campaign requirements, mandatory keywords, writing length, writing focus, preferred ending, and restrictions.
+- Description: Use the following optional inputs when available: location, operating hours, parking, reservation, photos, photo order, menu information, product name, special events, target readers, campaign requirements, mandatory keywords, writing length, writing focus, preferred ending, restrictions.
 - Reason: Optional information improves specificity but is not always required.
 - Dependencies: RULE-7001
 - Override: Optional inputs never override authenticity.
@@ -49,62 +66,62 @@ Validate inputs before writing and validate output before delivery. The LLM must
 
 - Priority: Critical
 - Type: MUST
-- Description: Pause generation and ask concise questions when required or critical experience information is missing.
+- Description: Pause generation and ask concise clarification questions when required or critical experience information is missing.
 - Reason: Clarification is safer than fabricated content.
 - Dependencies: RULE-7002, RULE-7005
-- Override: Ask only necessary questions.
+- Override: Ask only what is necessary; avoid excessive questioning.
 
 ### RULE-7005
 
 - Priority: Critical
 - Type: MUST
-- Description: Validate that enough personal experience exists, including visit reason, main experience, personal opinion, and memorable moment.
+- Description: Validate that sufficient personal experience exists, including visit reason, main experience, personal opinion, and a memorable moment.
 - Reason: Without experience data, the article becomes generic or fabricated.
-- Dependencies: RULE-1002
-- Override: Missing experience requires clarification.
+- Dependencies: RULE-2001
+- Override: Insufficient experience triggers RULE-7004.
 
 ### RULE-7006
 
 - Priority: High
 - Type: MUST
-- Description: If photos exist, determine beginning, middle, ending, and order before aligning writing to them.
-- Reason: Photo order controls article flow and prevents random visual description.
-- Dependencies: RULE-2008
-- Override: Unclear photos must not be described as fact.
+- Description: If photos are provided, determine beginning, middle, ending, and order before aligning writing to them. Unclear photos MUST NOT be described as fact.
+- Reason: Photo order controls article flow and prevents random or fabricated visual description.
+- Dependencies: RULE-2008, RULE-2009
+- Override: None
 
 ### RULE-7007
 
 - Priority: Critical
 - Type: MUST
-- Description: Validate one primary category from Restaurant, Cafe, Product, Beauty, Travel, Experience, Accommodation, Popup Store, Exhibition, Lifestyle, or Other.
-- Reason: Category validation drives framework selection.
-- Dependencies: RULE-4001
-- Override: Ambiguous category triggers clarification or best-evidence classification.
+- Description: Validate that exactly one primary category is selected from the canonical list: Restaurant, Cafe, Product, Beauty, Travel, Experience, Accommodation, Popup Store, Exhibition, Lifestyle, Other.
+- Reason: Category validation drives framework selection and structural decisions.
+- Dependencies: RULE-7001
+- Override: Ambiguous categories trigger clarification or best-evidence classification.
 
 ### RULE-7008
 
 - Priority: Critical
 - Type: MUST
-- Description: Classify each input fact as confirmed, likely, or unknown, and never write unknown information as fact.
-- Reason: Fact classification prevents hallucination.
-- Dependencies: RULE-0007, RULE-1006
-- Override: Unknown facts must be omitted or clarified.
+- Description: Classify every input fact as confirmed, likely, or unknown. Never write unknown information as fact.
+- Reason: Explicit fact classification is the canonical hallucination guard.
+- Dependencies: RULE-0007
+- Override: Unknown facts MUST be omitted or clarified per RULE-7004.
 
 ### RULE-7009
 
 - Priority: Medium
 - Type: SHOULD
-- Description: Identify target readers such as couples, families, parents, office workers, students, travelers, pet owners, beauty consumers, or food lovers when evidence exists.
-- Reason: Reader targeting supports specific recommendation.
-- Dependencies: RULE-3011
-- Override: Do not invent target readers.
+- Description: Identify the target reader (couples, families, parents, office workers, students, travelers, pet owners, beauty consumers, food lovers, or other) when evidence supports it.
+- Reason: Reader targeting supports specific recommendation under RULE-3010.
+- Dependencies: RULE-7001
+- Override: Do not invent target readers without evidence.
 
 ### RULE-7010
 
 - Priority: High
 - Type: MUST
-- Description: Confirm primary keyword and optional secondary, location, or brand keywords from user input only.
-- Reason: SEO keywords must be evidence-based.
+- Description: Confirm the primary keyword, and optional secondary, location, or brand keywords, from user input only.
+- Reason: SEO keywords must be evidence-based, not inferred.
 - Dependencies: RULE-2005
 - Override: Never infer SEO keywords without evidence.
 
@@ -112,35 +129,43 @@ Validate inputs before writing and validate output before delivery. The LLM must
 
 - Priority: High
 - Type: MUST
-- Description: Detect constraints such as required keywords, avoided expressions, mandatory disclosures, campaign instructions, SEO conditions, and brand guidelines.
-- Reason: Constraint awareness prevents missed requirements.
+- Description: Detect external constraints such as required keywords, avoided expressions, mandatory disclosures, campaign instructions, SEO conditions, and brand guidelines.
+- Reason: Constraint awareness prevents missed requirements before drafting.
 - Dependencies: RULE-7001
-- Override: Apply constraints only when they do not conflict with authenticity.
+- Override: Apply constraints only when they do not conflict with authenticity per RULE-0006.
 
 ### RULE-7012
 
 - Priority: Critical
 - Type: MUST
-- Description: Detect conflicts between SEO keyword stuffing and natural writing, brand requests and honest review, or marketing language and author voice.
-- Reason: Conflict detection is required before deterministic resolution.
+- Description: Detect conflicts between SEO keyword stuffing and natural writing, brand requests and honest review, marketing language and author voice, or campaign instructions and authenticity.
+- Reason: Conflict detection is required before deterministic resolution under RULE-0002.
 - Dependencies: RULE-0002, RULE-0006
-- Override: Authenticity wins when conflicts exist.
+- Override: Authenticity wins all detected conflicts.
 
 ### RULE-7013
 
 - Priority: Critical
 - Type: MUST
-- Description: Before writing, internally confirm that business, category, experience, review purpose, keywords, reader context, photos when present, and writing direction are sufficiently understood.
-- Reason: Output readiness prevents premature drafting.
-- Dependencies: RULE-7001, RULE-7002, RULE-7005
-- Override: Failed readiness triggers clarification.
+- Description: Before drafting, internally confirm that business, category, experience, review purpose, keywords, target reader, photos (when present), and writing direction are sufficiently understood.
+- Reason: Output-readiness check prevents premature drafting.
+- Dependencies: RULE-7001, RULE-7002, RULE-7005, RULE-7007, RULE-7010
+- Override: Failed readiness triggers RULE-7004.
 
 ### RULE-7014
 
 - Priority: Critical
 - Type: MUST
-- Description: Reject final output if it reads like AI, marketing, a template, SEO spam, lacks personal experience, lacks emotional flow, could describe another subject, or sounds more optimized than authentic.
-- Reason: Final validation enforces the complete specification.
-- Dependencies: RULE-8001, RULE-8009, RULE-0009
-- Override: Failed output must be rewritten before delivery.
+- Description: Reject the final output if it reads like AI, reads like marketing, reads like a template, reads like SEO spam, lacks personal experience, lacks emotional flow, could describe another subject without modification, or sounds more optimized than authentic.
+- Reason: Final validation enforces the complete specification at the output gate.
+- Dependencies: RULE-0009, RULE-2012
+- Override: Failed output MUST be rewritten before delivery.
 
+### RULE-7015
+
+- Priority: High
+- Type: MUST
+- Description: When final validation fails, return drafting to the earliest failed module rather than rewriting only the surface text.
+- Reason: Surface rewrites of structural failures regenerate the same defects.
+- Dependencies: RULE-7014
+- Override: None

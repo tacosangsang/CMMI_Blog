@@ -7,6 +7,7 @@ role: prewriting_reasoning
 rule_range: RULE-6001..RULE-6099
 depends_on:
   - 00_MASTER_SPEC
+  - 02_GLOBAL_RULES
   - 07_VALIDATION_ENGINE
 execution_position: 2
 ---
@@ -15,7 +16,11 @@ execution_position: 2
 
 ## Purpose
 
-Define how the LLM must think before writing. This module creates memory-like understanding from verified user input.
+Define how the model MUST think before any draft is produced. This module owns the prewriting reasoning sequence, focus selection, information classification, story direction, and paragraph-level self-questions. It does NOT own vocabulary or writing structure; those are owned by [05_VOICE_ENGINE.md](05_VOICE_ENGINE.md) and [03_WRITING_ENGINE.md](03_WRITING_ENGINE.md).
+
+## Source
+
+Canonical merge of `06_CMMI Blog Reasoning Engine.pdf`.
 
 ## Rules
 
@@ -23,44 +28,44 @@ Define how the LLM must think before writing. This module creates memory-like un
 
 - Priority: Critical
 - Type: MUST
-- Description: Reason in this fixed order before writing: experience, observation, emotion, meaning, story, writing.
-- Reason: Writing should begin only after the experience feels understood.
+- Description: Before any draft, reason in this fixed order: experience, observation, emotion, meaning, story, writing.
+- Reason: Drafting may only begin after the experience has been understood as a coherent memory.
 - Dependencies: RULE-7001
-- Override: Never begin article generation before completing this reasoning order.
+- Override: Drafting before completing this reasoning order is invalid.
 
 ### RULE-6002
 
 - Priority: High
 - Type: MUST
-- Description: Identify why the visit, purchase, stay, or experience happened.
+- Description: Identify why the visit, purchase, stay, or experience happened (curiosity, recommendation, need, convenience, special occasion, nearby visit, interest).
 - Reason: Motivation prevents generic openings and supports personal context.
 - Dependencies: RULE-7005
-- Override: Missing motivation may trigger clarification if critical.
+- Override: Missing motivation MAY trigger clarification when critical.
 
 ### RULE-6003
 
 - Priority: High
 - Type: MUST
-- Description: Identify one central experience that all secondary details support.
+- Description: Identify exactly one central experience that all secondary details support.
 - Reason: One core experience creates coherence and prevents unfocused writing.
 - Dependencies: RULE-2002
-- Override: Competing themes must be demoted or clarified.
+- Override: Competing themes MUST be demoted or clarified.
 
 ### RULE-6004
 
 - Priority: High
 - Type: MUST
-- Description: Determine natural emotional flow from beginning, expectation, experience, reflection, to conclusion.
-- Reason: Emotional progression makes writing feel lived rather than static.
-- Dependencies: RULE-5002
-- Override: Remove constant excitement.
+- Description: Determine the natural emotional flow across beginning, expectation, experience, reflection, and conclusion. Avoid constant excitement.
+- Reason: Emotional progression makes the article feel lived rather than static.
+- Dependencies: RULE-2001
+- Override: Remove constant high-intensity emotion.
 
 ### RULE-6005
 
 - Priority: High
 - Type: MUST
-- Description: Select only memorable moments worth detailing and ignore routine actions unless needed for context.
-- Reason: Detail should support story and reader value.
+- Description: Select only memorable moments worth detailing. Ignore routine actions unless they are needed for context.
+- Reason: Detail must support story and reader value, not document every step.
 - Dependencies: RULE-2003
 - Override: None
 
@@ -69,70 +74,78 @@ Define how the LLM must think before writing. This module creates memory-like un
 - Priority: Medium
 - Type: SHOULD
 - Description: Choose one story direction such as discovery, comparison, challenge, surprise, comfort, relaxation, or improvement.
-- Reason: Story direction creates internal coherence.
+- Reason: A named story direction creates internal coherence.
 - Dependencies: RULE-6003
-- Override: Do not force a named direction if the experience is straightforward.
+- Override: Do not force a direction when the experience is straightforward.
 
 ### RULE-6007
 
 - Priority: High
 - Type: MUST
-- Description: Determine the dominant writing focus from category and experience instead of dividing focus equally.
+- Description: Determine the single dominant writing focus from the category and the experience. Never divide focus equally across all elements.
 - Reason: Equal coverage makes reviews generic and unfocused.
-- Dependencies: RULE-4002, RULE-6003
+- Dependencies: RULE-2002, RULE-6003
 - Override: Category priority controls default focus.
 
 ### RULE-6008
 
 - Priority: High
 - Type: MUST
-- Description: Classify information as essential, useful, optional, or unnecessary before writing.
-- Reason: Information filtering prevents bloated and official-description-like articles.
-- Dependencies: RULE-7008, RULE-2003
-- Override: Ignore unnecessary facts.
+- Description: Classify every information item as essential, useful, optional, or unnecessary before writing. Drop unnecessary items.
+- Reason: Information filtering prevents bloated, official-description-like articles.
+- Dependencies: RULE-2003, RULE-7008
+- Override: Ignore unnecessary facts regardless of source.
 
 ### RULE-6009
 
-- Priority: Critical
+- Priority: High
 - Type: MUST
-- Description: Form personal opinion only after experience and observation have been reasoned through.
-- Reason: Unsupported opinion feels generic and promotional.
-- Dependencies: RULE-2001, RULE-3005
-- Override: Rewrite opinion-first content.
+- Description: For every planned paragraph, verify that it offers a clear reader value (atmosphere, taste, comparison, decision support, curiosity satisfaction).
+- Reason: Paragraph-level reader-value gating prevents bloated articles.
+- Dependencies: RULE-2010
+- Override: Failed paragraphs MUST be removed or rewritten.
 
 ### RULE-6010
 
-- Priority: High
+- Priority: Critical
 - Type: MUST
-- Description: Treat recommendation as optional and as a result of experience, not a mandatory section.
-- Reason: Forced recommendations sound like promotion.
-- Dependencies: RULE-3011, RULE-3012
-- Override: None
+- Description: Form personal opinion only after the experience and observations have been reasoned through.
+- Reason: Unsupported opinion sounds generic and promotional.
+- Dependencies: RULE-2001
+- Override: Opinion-first content MUST be rewritten.
 
 ### RULE-6011
 
 - Priority: High
 - Type: MUST
-- Description: Before every paragraph, check what happened, what was noticed, what surprised the author, what felt different, whether a friend would be told this, whether it sounds like marketing, and whether it uniquely describes this subject.
-- Reason: Paragraph-level reasoning filters generic and AI-like content before generation.
-- Dependencies: RULE-1009, RULE-8001
-- Override: Failed paragraph checks require rewrite.
+- Description: Treat recommendation as optional and as a result of the experience, never as a mandatory section.
+- Reason: Forced recommendations sound promotional.
+- Dependencies: RULE-6010
+- Override: None
 
 ### RULE-6012
 
 - Priority: High
 - Type: MUST
-- Description: Remove generic sentences, copied information, marketing language, empty praise, SEO-first writing, unnecessary explanations, and repeated structures before drafting.
-- Reason: Pre-generation filtering reduces final validation failures.
-- Dependencies: RULE-8001, RULE-8002, RULE-8005
-- Override: None
+- Description: Before drafting each paragraph, internally ask: what actually happened, what was noticed, what surprised the author, what felt different, would I naturally tell a friend this, does this sound like marketing, and could this paragraph only describe this place. If any answer fails, rewrite.
+- Reason: Paragraph-level self-questioning filters generic and AI-like content before generation.
+- Dependencies: RULE-2010, RULE-2012
+- Override: Failed paragraph checks require rewrite before drafting.
 
 ### RULE-6013
+
+- Priority: High
+- Type: MUST
+- Description: Pre-draft filter MUST remove generic sentences, copied information, marketing language, empty praise, SEO-first writing, unnecessary explanations, and repeated structures.
+- Reason: Pre-generation filtering reduces final-validation failures and saves rewrite cycles.
+- Dependencies: RULE-2012, RULE-2005
+- Override: None
+
+### RULE-6014
 
 - Priority: Critical
 - Type: MUST
 - Description: Think like a person remembering an experience, not like an AI assembling an article.
 - Reason: The master reasoning objective is believable memory reconstruction.
-- Dependencies: RULE-1002, RULE-5012
+- Dependencies: RULE-2001
 - Override: Overrides template-driven generation.
-
