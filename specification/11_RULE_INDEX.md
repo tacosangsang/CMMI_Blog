@@ -7,6 +7,16 @@ role: rule_lookup
 rule_range: all
 depends_on:
   - 00_MASTER_SPEC
+  - 01_IDENTITY
+  - 02_GLOBAL_RULES
+  - 03_WRITING_ENGINE
+  - 04_FRAMEWORK_ENGINE
+  - 05_VOICE_ENGINE
+  - 06_REASONING_ENGINE
+  - 07_VALIDATION_ENGINE
+  - 08_NEGATIVE_RULES
+  - 09_MEMORY_ENGINE
+  - 10_EXECUTION_PIPELINE
 execution_position: 11
 ---
 
@@ -16,156 +26,255 @@ execution_position: 11
 
 | Range | Module | File |
 |---|---|---|
-| RULE-0001..RULE-0099 | Master | 00_MASTER_SPEC.md |
-| RULE-1001..RULE-1099 | Identity | 01_IDENTITY.md |
-| RULE-2001..RULE-2099 | Global Rules | 02_GLOBAL_RULES.md |
-| RULE-3001..RULE-3099 | Writing Engine | 03_WRITING_ENGINE.md |
-| RULE-4001..RULE-4099 | Framework Engine | 04_FRAMEWORK_ENGINE.md |
-| RULE-5001..RULE-5099 | Voice Engine | 05_VOICE_ENGINE.md |
-| RULE-6001..RULE-6099 | Reasoning Engine | 06_REASONING_ENGINE.md |
-| RULE-7001..RULE-7099 | Validation Engine | 07_VALIDATION_ENGINE.md |
-| RULE-8001..RULE-8099 | Negative Rules | 08_NEGATIVE_RULES.md |
-| RULE-9001..RULE-9099 | Memory Engine | 09_MEMORY_ENGINE.md |
-| RULE-10001..RULE-10099 | Execution Pipeline | 10_EXECUTION_PIPELINE.md |
+| RULE-0001..RULE-0099 | Master | [00_MASTER_SPEC.md](00_MASTER_SPEC.md) |
+| RULE-1001..RULE-1099 | Identity | [01_IDENTITY.md](01_IDENTITY.md) |
+| RULE-2001..RULE-2099 | Global Rules | [02_GLOBAL_RULES.md](02_GLOBAL_RULES.md) |
+| RULE-3001..RULE-3099 | Writing Engine | [03_WRITING_ENGINE.md](03_WRITING_ENGINE.md) |
+| RULE-4001..RULE-4099 | Framework Engine | [04_FRAMEWORK_ENGINE.md](04_FRAMEWORK_ENGINE.md) |
+| RULE-5001..RULE-5099 | Voice Engine | [05_VOICE_ENGINE.md](05_VOICE_ENGINE.md) |
+| RULE-6001..RULE-6099 | Reasoning Engine | [06_REASONING_ENGINE.md](06_REASONING_ENGINE.md) |
+| RULE-7001..RULE-7099 | Validation Engine | [07_VALIDATION_ENGINE.md](07_VALIDATION_ENGINE.md) |
+| RULE-8001..RULE-8099 | Negative Rules | [08_NEGATIVE_RULES.md](08_NEGATIVE_RULES.md) |
+| RULE-9001..RULE-9099 | Memory Engine | [09_MEMORY_ENGINE.md](09_MEMORY_ENGINE.md) |
+| RULE-10001..RULE-10099 | Execution Pipeline | [10_EXECUTION_PIPELINE.md](10_EXECUTION_PIPELINE.md) |
+
+## Module Execution Positions
+
+| Position | Module |
+|---|---|
+| 0 | Master, Global Rules |
+| 1 | Validation Engine |
+| 2 | Reasoning Engine |
+| 3 | Framework Engine |
+| 4 | Identity |
+| 5 | Writing Engine |
+| 6 | Voice Engine |
+| 7 | Negative Rules |
+| 9 | Execution Pipeline |
+| 10 | Memory Engine |
+| 11 | Rule Index |
 
 ## Rule Lookup
 
-| Rule ID | Module | Short Name |
-|---|---|---|
-| RULE-0001 | Master | Single source of truth |
-| RULE-0002 | Master | Conflict hierarchy |
-| RULE-0003 | Master | Semantic merge |
-| RULE-0004 | Master | Stable Rule IDs |
-| RULE-0005 | Master | Module execution order |
-| RULE-0006 | Master | Authenticity over optimization |
-| RULE-0007 | Master | Fact classification |
-| RULE-0008 | Master | Module boundaries |
-| RULE-0009 | Master | Believable authorship gate |
-| RULE-0010 | Master | Imperfection over uniformity |
-| RULE-1001 | Identity | Exclusive author |
-| RULE-1002 | Identity | Real experience feel |
-| RULE-1003 | Identity | Experience before information |
-| RULE-1004 | Identity | Neighbor relationship |
-| RULE-1005 | Identity | Author personality |
-| RULE-1006 | Identity | No unknown authority |
-| RULE-1007 | Identity | Honest balance |
-| RULE-1008 | Identity | Reader decision freedom |
-| RULE-1009 | Identity | Subject-specific writing |
-| RULE-1010 | Identity | Believable over perfect |
-| RULE-2001 | Global | Experience-first order |
-| RULE-2002 | Global | One dominant experience |
-| RULE-2003 | Global | Useful memorable details |
-| RULE-2004 | Global | Specific observations |
-| RULE-2005 | Global | Natural keywords |
-| RULE-2006 | Global | No universal template |
-| RULE-2007 | Global | Helpful comparisons |
-| RULE-2008 | Global | Photo order alignment |
-| RULE-2009 | Global | No unseen photo description |
-| RULE-3001 | Writing | Default article flow |
-| RULE-3002 | Writing | Empathy before business |
-| RULE-3003 | Writing | Varied introductions |
-| RULE-3004 | Writing | Useful basic info |
-| RULE-3005 | Writing | Experience before evaluation |
-| RULE-3006 | Writing | Local review sequence |
-| RULE-3007 | Writing | Sensory sequence |
-| RULE-3008 | Writing | Sentence rhythm variation |
-| RULE-3009 | Writing | Paragraph length |
-| RULE-3010 | Writing | Photo paragraph rhythm |
-| RULE-3011 | Writing | Specific recommendations |
-| RULE-3012 | Writing | Optional recommendation |
-| RULE-3013 | Writing | Calm ending |
-| RULE-3014 | Writing | Space sequence |
-| RULE-3015 | Writing | Food sequence |
-| RULE-3016 | Writing | Product sequence |
-| RULE-3017 | Writing | Beauty sequence |
-| RULE-3018 | Writing | Experience sequence |
-| RULE-4001 | Framework | One primary category |
-| RULE-4002 | Framework | Framework as guidance |
-| RULE-4003 | Framework | Restaurant framework |
-| RULE-4004 | Framework | Cafe framework |
-| RULE-4005 | Framework | Product framework |
-| RULE-4006 | Framework | Beauty framework |
-| RULE-4007 | Framework | Experience framework |
-| RULE-4008 | Framework | Travel framework |
-| RULE-4009 | Framework | Accommodation framework |
-| RULE-4010 | Framework | Popup framework |
-| RULE-4011 | Framework | Exhibition framework |
-| RULE-4012 | Framework | Lifestyle or Other |
-| RULE-4013 | Framework | No mixed frameworks |
-| RULE-5001 | Voice | Conversational voice |
-| RULE-5002 | Voice | Calm emotion ratio |
-| RULE-5003 | Voice | Preferred vocabulary |
-| RULE-5004 | Voice | Softening words |
-| RULE-5005 | Voice | Subjective opinion |
-| RULE-5006 | Voice | Comparison voice |
-| RULE-5007 | Voice | Sentence rhythm |
-| RULE-5008 | Voice | Paragraph rhythm |
-| RULE-5009 | Voice | Calm endings |
-| RULE-5010 | Voice | Light reader questions |
-| RULE-5011 | Voice | Light humor |
-| RULE-5012 | Voice | Thinking over word mimicry |
-| RULE-6001 | Reasoning | Reasoning order |
-| RULE-6002 | Reasoning | Visit motivation |
-| RULE-6003 | Reasoning | Central experience |
-| RULE-6004 | Reasoning | Emotional flow |
-| RULE-6005 | Reasoning | Memorable moments |
-| RULE-6006 | Reasoning | Story direction |
-| RULE-6007 | Reasoning | Dominant focus |
-| RULE-6008 | Reasoning | Information importance |
-| RULE-6009 | Reasoning | Opinion after experience |
-| RULE-6010 | Reasoning | Recommendation as result |
-| RULE-6011 | Reasoning | Paragraph self-questions |
-| RULE-6012 | Reasoning | Pre-draft filters |
-| RULE-6013 | Reasoning | Memory-like thinking |
-| RULE-7001 | Validation | Validate first |
-| RULE-7002 | Validation | Required fields |
-| RULE-7003 | Validation | Optional fields |
-| RULE-7004 | Validation | Clarification gate |
-| RULE-7005 | Validation | Experience sufficiency |
-| RULE-7006 | Validation | Photo validation |
-| RULE-7007 | Validation | Category validation |
-| RULE-7008 | Validation | Fact confidence |
-| RULE-7009 | Validation | Target reader |
-| RULE-7010 | Validation | Keyword confirmation |
-| RULE-7011 | Validation | Constraint detection |
-| RULE-7012 | Validation | Conflict detection |
-| RULE-7013 | Validation | Output readiness |
-| RULE-7014 | Validation | Final rejection gate |
-| RULE-8001 | Negative | No AI writing |
-| RULE-8002 | Negative | No marketing |
-| RULE-8003 | Negative | No exaggerated praise |
-| RULE-8004 | Negative | No overreaction |
-| RULE-8005 | Negative | No keyword stuffing |
-| RULE-8006 | Negative | No AI phrases |
-| RULE-8007 | Negative | No repeated patterns |
-| RULE-8008 | Negative | No generic endings |
-| RULE-8009 | Negative | No generic portability |
-| RULE-8010 | Negative | No official-description paste |
-| RULE-8011 | Negative | No false balance |
-| RULE-8012 | Negative | Avoid expression overuse |
-| RULE-8013 | Negative | No cloned articles |
-| RULE-8014 | Negative | Negative quality gate |
-| RULE-9001 | Memory | Identity stable, style evolves |
-| RULE-9002 | Memory | Update threshold |
-| RULE-9003 | Memory | Repeated evidence |
-| RULE-9004 | Memory | Evolution observation order |
-| RULE-9005 | Memory | Style targets |
-| RULE-9006 | Memory | Stable identity elements |
-| RULE-9007 | Memory | Allowed style evolution |
-| RULE-9008 | Memory | Change record format |
-| RULE-9009 | Memory | Newest consistent style |
-| RULE-9010 | Memory | Rejected memory sources |
-| RULE-9011 | Memory | Memory rejection gate |
-| RULE-9012 | Memory | Module synchronization |
-| RULE-10001 | Pipeline | Validate inputs |
-| RULE-10002 | Pipeline | Classify category and purpose |
-| RULE-10003 | Pipeline | Reason before drafting |
-| RULE-10004 | Pipeline | Apply framework |
-| RULE-10005 | Pipeline | Apply identity |
-| RULE-10006 | Pipeline | Draft article |
-| RULE-10007 | Pipeline | Apply voice |
-| RULE-10008 | Pipeline | Apply negative rules |
-| RULE-10009 | Pipeline | Final validation |
-| RULE-10010 | Pipeline | Output gate |
-| RULE-10011 | Pipeline | Memory maintenance |
+### Master (00)
 
+| Rule ID | Type | Short Name |
+|---|---|---|
+| RULE-0001 | MUST | Single source of truth |
+| RULE-0002 | MUST | Global conflict hierarchy |
+| RULE-0003 | MUST | Semantic merge |
+| RULE-0004 | MUST | Stable Rule IDs |
+| RULE-0005 | MUST | Module execution order |
+| RULE-0006 | NEVER | Authenticity over optimization |
+| RULE-0007 | MUST | Fact classification delegation |
+| RULE-0008 | MUST | Module boundaries |
+| RULE-0009 | MUST | Believable authorship gate |
+| RULE-0010 | NEVER | Imperfection over uniformity |
+| RULE-0011 | MUST | Source PDF immutability |
+| RULE-0012 | NEVER | No invented rules |
+| RULE-0013 | MUST | YAML front matter required |
+| RULE-0014 | MUST | One-direction dependency graph |
+| RULE-0015 | NEVER | Output gate enforcement |
+
+### Identity (01)
+
+| Rule ID | Type | Short Name |
+|---|---|---|
+| RULE-1001 | MUST | Exclusive author |
+| RULE-1002 | MUST | Real experience feel |
+| RULE-1003 | MUST | Experience before information |
+| RULE-1004 | MUST | Neighbor relationship |
+| RULE-1005 | MUST | Author personality |
+| RULE-1006 | NEVER | No fabricated authority |
+| RULE-1007 | MUST | Honest balance |
+| RULE-1008 | MUST | Reader decision freedom |
+| RULE-1009 | SHOULD | Subject-specific writing |
+| RULE-1010 | MUST | Believable over perfect |
+| RULE-1011 | MUST | Observe before evaluate |
+| RULE-1012 | MUST | Friend-question decision rule |
+| RULE-1013 | NEVER | No teaching or selling posture |
+
+### Global Rules (02)
+
+| Rule ID | Type | Short Name |
+|---|---|---|
+| RULE-2001 | MUST | Experience-first order |
+| RULE-2002 | MUST | One dominant experience |
+| RULE-2003 | MUST | Useful memorable details |
+| RULE-2004 | MUST | Specific observations |
+| RULE-2005 | MUST | Natural keyword distribution |
+| RULE-2006 | NEVER | No universal template |
+| RULE-2007 | SHOULD | Helpful comparisons |
+| RULE-2008 | MUST | Photo order alignment |
+| RULE-2009 | NEVER | No unseen photo description |
+| RULE-2010 | MUST | Reader value gate |
+| RULE-2011 | MUST | Honest balance |
+| RULE-2012 | NEVER | No generic portability |
+| RULE-2013 | MUST | Allow natural imperfections |
+| RULE-2014 | NEVER | Sub-language priority |
+
+### Writing Engine (03)
+
+| Rule ID | Type | Short Name |
+|---|---|---|
+| RULE-3001 | SHOULD | Default article flow |
+| RULE-3002 | MUST | Empathy before business |
+| RULE-3003 | NEVER | No repeated introductions |
+| RULE-3004 | SHOULD | Useful basic information |
+| RULE-3005 | MUST | Local review sequence |
+| RULE-3006 | SHOULD | Sensory sequence |
+| RULE-3007 | MUST | Sentence rhythm variation |
+| RULE-3008 | MUST | Paragraph length |
+| RULE-3009 | MUST | Photo-paragraph rhythm |
+| RULE-3010 | MUST | Specific recommendations |
+| RULE-3011 | MAY | Optional recommendation |
+| RULE-3012 | SHOULD | Calm ending |
+| RULE-3013 | SHOULD | Space sequence |
+| RULE-3014 | SHOULD | Food sequence |
+| RULE-3015 | SHOULD | Product sequence |
+| RULE-3016 | SHOULD | Beauty sequence |
+| RULE-3017 | SHOULD | Experience sequence |
+
+### Framework Engine (04)
+
+| Rule ID | Type | Short Name |
+|---|---|---|
+| RULE-4001 | MUST | One primary category |
+| RULE-4002 | MUST | Framework as guidance |
+| RULE-4003 | MUST | Restaurant framework |
+| RULE-4004 | MUST | Cafe framework |
+| RULE-4005 | MUST | Product framework |
+| RULE-4006 | MUST | Beauty framework |
+| RULE-4007 | MUST | Experience framework |
+| RULE-4008 | MUST | Travel framework |
+| RULE-4009 | MUST | Accommodation framework |
+| RULE-4010 | SHOULD | Popup framework |
+| RULE-4011 | SHOULD | Exhibition framework |
+| RULE-4012 | MAY | Lifestyle or Other |
+| RULE-4013 | NEVER | No mixed frameworks |
+
+### Voice Engine (05)
+
+| Rule ID | Type | Short Name |
+|---|---|---|
+| RULE-5001 | MUST | Conversational voice |
+| RULE-5002 | MUST | Calm emotion ratio |
+| RULE-5003 | SHOULD | Preferred vocabulary |
+| RULE-5004 | SHOULD | Softening words |
+| RULE-5005 | MUST | Subjective opinion |
+| RULE-5006 | SHOULD | Comparison phrasing |
+| RULE-5007 | MAY | Light reader questions |
+| RULE-5008 | MAY | Light humor |
+| RULE-5009 | SHOULD | Natural reactions |
+| RULE-5010 | MUST | Voice-level observe first |
+| RULE-5011 | SHOULD | Soft recommendation phrasing |
+| RULE-5012 | MUST | Thinking over word mimicry |
+
+### Reasoning Engine (06)
+
+| Rule ID | Type | Short Name |
+|---|---|---|
+| RULE-6001 | MUST | Reasoning order |
+| RULE-6002 | MUST | Visit motivation |
+| RULE-6003 | MUST | Central experience |
+| RULE-6004 | MUST | Emotional flow |
+| RULE-6005 | MUST | Memorable moments |
+| RULE-6006 | SHOULD | Story direction |
+| RULE-6007 | MUST | Dominant focus |
+| RULE-6008 | MUST | Information classification |
+| RULE-6009 | MUST | Paragraph reader value |
+| RULE-6010 | MUST | Opinion after experience |
+| RULE-6011 | MUST | Recommendation as result |
+| RULE-6012 | MUST | Paragraph self-questions |
+| RULE-6013 | MUST | Pre-draft filter |
+| RULE-6014 | MUST | Memory-like thinking |
+
+### Validation Engine (07)
+
+| Rule ID | Type | Short Name |
+|---|---|---|
+| RULE-7001 | MUST | Validate first |
+| RULE-7002 | MUST | Required fields |
+| RULE-7003 | MAY | Optional fields |
+| RULE-7004 | MUST | Clarification gate |
+| RULE-7005 | MUST | Experience sufficiency |
+| RULE-7006 | MUST | Photo validation |
+| RULE-7007 | MUST | Category validation (canonical list) |
+| RULE-7008 | MUST | Fact classification |
+| RULE-7009 | SHOULD | Target reader |
+| RULE-7010 | MUST | Keyword confirmation |
+| RULE-7011 | MUST | Constraint detection |
+| RULE-7012 | MUST | Conflict detection |
+| RULE-7013 | MUST | Output readiness |
+| RULE-7014 | MUST | Final reject gate |
+| RULE-7015 | MUST | Rewind to failed module |
+
+### Negative Rules (08)
+
+| Rule ID | Type | Short Name |
+|---|---|---|
+| RULE-8001 | NEVER | No AI writing |
+| RULE-8002 | NEVER | No marketing |
+| RULE-8003 | NEVER | No exaggerated praise |
+| RULE-8004 | NEVER | No overreaction |
+| RULE-8005 | NEVER | No keyword stuffing |
+| RULE-8006 | NEVER | No AI-style phrases |
+| RULE-8007 | NEVER | No repeated patterns |
+| RULE-8008 | NEVER | No generic endings |
+| RULE-8009 | NEVER | No generic portability |
+| RULE-8010 | NEVER | No official-description paste |
+| RULE-8011 | NEVER | No false balance |
+| RULE-8012 | SHOULD | Avoid expression overuse |
+| RULE-8013 | NEVER | No cloned articles |
+| RULE-8014 | MUST | Negative quality gate |
+
+### Memory Engine (09)
+
+| Rule ID | Type | Short Name |
+|---|---|---|
+| RULE-9001 | MUST | Identity stable, style evolves |
+| RULE-9002 | MUST | Update threshold |
+| RULE-9003 | MUST | Repeated evidence |
+| RULE-9004 | SHOULD | Evolution observation order |
+| RULE-9005 | SHOULD | Style tracking targets |
+| RULE-9006 | MUST | Stable identity elements |
+| RULE-9007 | MAY | Allowed style evolution |
+| RULE-9008 | MUST | Change record format |
+| RULE-9009 | MUST | Newest consistent style |
+| RULE-9010 | NEVER | Rejected memory sources |
+| RULE-9011 | MUST | Memory rejection gate |
+| RULE-9012 | MUST | Synchronization scope |
+| RULE-9013 | MUST | Uncertainty override |
+
+### Execution Pipeline (10)
+
+| Rule ID | Type | Short Name |
+|---|---|---|
+| RULE-10001 | MUST | Validate inputs |
+| RULE-10002 | MUST | Classify category |
+| RULE-10003 | MUST | Reason before drafting |
+| RULE-10004 | MUST | Apply framework |
+| RULE-10005 | MUST | Apply identity |
+| RULE-10006 | MUST | Draft article |
+| RULE-10007 | MUST | Apply voice |
+| RULE-10008 | MUST | Apply negative filter |
+| RULE-10009 | MUST | Final validation |
+| RULE-10010 | MUST | Output gate |
+| RULE-10011 | MUST | Memory maintenance |
+
+## Counts
+
+| Module | Rules |
+|---|---|
+| 00 Master | 15 |
+| 01 Identity | 13 |
+| 02 Global Rules | 14 |
+| 03 Writing Engine | 17 |
+| 04 Framework Engine | 13 |
+| 05 Voice Engine | 12 |
+| 06 Reasoning Engine | 14 |
+| 07 Validation Engine | 15 |
+| 08 Negative Rules | 14 |
+| 09 Memory Engine | 13 |
+| 10 Execution Pipeline | 11 |
+| **Total** | **151** |
