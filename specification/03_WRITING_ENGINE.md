@@ -179,3 +179,21 @@ Canonical merge of `02_CMMI Blog Writing Specification.pdf`. Cross-references re
 - Reason: Experience content should read as story rather than static information.
 - Dependencies: RULE-4007
 - Override: None
+
+### RULE-3018
+
+- Priority: Critical
+- Type: NEVER
+- Description: Never invent concrete details that are not present in user input, source material, or confirmed experience. Concrete details include but are not limited to: menu items, side dish names, ingredient lists, quantities, portion counts, prices, colors, brand names, dish counts, table counts, staff behavior specifics, other patrons' presence or count, decor items, and any other named specifics. When such a detail is required by flow but not supplied, leave a `[확인 필요]` placeholder or omit the detail; do not fabricate.
+- Reason: Detail-level fabrication is the most common failure mode of experience-first writing and directly violates RULE-1006 at paragraph granularity.
+- Dependencies: RULE-1006, RULE-7008
+- Override: Overrides any flow rule that would otherwise motivate invented specifics.
+
+### RULE-3019
+
+- Priority: High
+- Type: MUST
+- Description: Apply Naver-mobile-friendly line breaks: insert a hard line break every 1 to 2 sentences, and never allow a single sentence to run without a break beyond roughly 40 Korean characters. Line breaks MUST fall at natural clause or sentence boundaries, never mid-word or mid-particle. A paragraph unit under RULE-3008 MAY contain multiple line-broken lines, but MUST remain within the 1–4 sentence paragraph ceiling.
+- Reason: Naver mobile viewports wrap long sentences awkwardly, splitting words or particles across lines and reducing readability. Fixed short-line formatting is the platform-native convention that preserves the neighbor-conversation cadence on the primary reading surface.
+- Dependencies: RULE-3008, RULE-3009
+- Override: Overrides desktop-oriented long-line formatting when output targets Naver mobile.
