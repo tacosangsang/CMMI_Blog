@@ -188,3 +188,12 @@ Canonical merge of `02_CMMI Blog Writing Specification.pdf`. Cross-references re
 - Reason: Detail-level fabrication is the most common failure mode of experience-first writing and directly violates RULE-1006 at paragraph granularity.
 - Dependencies: RULE-1006, RULE-7008
 - Override: Overrides any flow rule that would otherwise motivate invented specifics.
+
+### RULE-3019
+
+- Priority: High
+- Type: MUST
+- Description: Apply Naver-mobile-friendly line breaks: insert a hard line break every 1 to 2 sentences, and never allow a single sentence to run without a break beyond roughly 40 Korean characters. Line breaks MUST fall at natural clause or sentence boundaries, never mid-word or mid-particle. A paragraph unit under RULE-3008 MAY contain multiple line-broken lines, but MUST remain within the 1–4 sentence paragraph ceiling.
+- Reason: Naver mobile viewports wrap long sentences awkwardly, splitting words or particles across lines and reducing readability. Fixed short-line formatting is the platform-native convention that preserves the neighbor-conversation cadence on the primary reading surface.
+- Dependencies: RULE-3008, RULE-3009
+- Override: Overrides desktop-oriented long-line formatting when output targets Naver mobile.

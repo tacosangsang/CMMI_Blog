@@ -133,3 +133,12 @@ Canonical merge of `05_CMMI Blog Voice Dictionary.pdf`.
 - Reason: Readers remember authenticity, not vocabulary.
 - Dependencies: RULE-1001, RULE-6001
 - Override: Overrides mechanical voice mimicry.
+
+### RULE-5013
+
+- Priority: High
+- Type: MUST
+- Description: When the article is written under a campaign, sponsorship, or 체험단 arrangement (detected via RULE-7011), skew tone and framing toward the positive side of the honest range: select positive-leaning verbs and adjectives where multiple honest options exist, place strengths in dominant paragraph positions, and omit minor drawbacks that did not meaningfully affect the experience. Never fabricate positives (RULE-1006, RULE-3018), never use exaggerated praise (RULE-8003), and never invent balance-signaling negatives (RULE-8011). Genuine, meaningful drawbacks that materially affected the experience are still reported per RULE-1007.
+- Reason: Campaign context legitimately shifts editorial framing toward the sponsor within honesty bounds; suppressing that shift produces flat, neutral prose that reads as evasive, while removing the honesty bounds produces advertising. The rule defines the operating window between those failures.
+- Dependencies: RULE-1006, RULE-1007, RULE-7011, RULE-8003, RULE-8011, RULE-3018
+- Override: RULE-1006, RULE-1007, RULE-8003, and RULE-8011 always override this rule; positive skew never authorizes fabrication, exaggeration, or hidden material defects.

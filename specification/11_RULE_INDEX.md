@@ -135,6 +135,7 @@ execution_position: 11
 | RULE-3016 | SHOULD | Beauty sequence |
 | RULE-3017 | SHOULD | Experience sequence |
 | RULE-3018 | NEVER | No invented concrete details |
+| RULE-3019 | MUST | Naver mobile line breaks |
 
 ### Framework Engine (04)
 
@@ -170,6 +171,7 @@ execution_position: 11
 | RULE-5010 | MUST | Voice-level observe first |
 | RULE-5011 | SHOULD | Soft recommendation phrasing |
 | RULE-5012 | MUST | Thinking over word mimicry |
+| RULE-5013 | MUST | Positive skew under campaign |
 
 ### Reasoning Engine (06)
 
@@ -273,12 +275,12 @@ execution_position: 11
 | 00 Master | 15 |
 | 01 Identity | 13 |
 | 02 Global Rules | 14 |
-| 03 Writing Engine | 18 |
+| 03 Writing Engine | 19 |
 | 04 Framework Engine | 13 |
-| 05 Voice Engine | 12 |
+| 05 Voice Engine | 13 |
 | 06 Reasoning Engine | 14 |
 | 07 Validation Engine | 16 |
 | 08 Negative Rules | 16 |
 | 09 Memory Engine | 13 |
 | 10 Execution Pipeline | 11 |
-| **Total** | **155** |
+| **Total** | **157** |
