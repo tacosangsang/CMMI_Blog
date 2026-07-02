@@ -151,7 +151,25 @@ Canonical merge of `03_CMMI Blog Negative Rule Spec.pdf`. Cross-referenced again
 
 - Priority: Critical
 - Type: MUST
-- Description: At the negative-filter stage, scan the draft for AI language, marketing language, exaggerated praise, overreaction, keyword stuffing, repeated patterns, generic endings, generic portability, official-description paste, false balance, vocabulary overuse, and clone signals. Forward all detected violations to RULE-7014 for rejection.
+- Description: At the negative-filter stage, scan the draft for AI language, marketing language, exaggerated praise, overreaction, keyword stuffing, repeated patterns, generic endings, generic portability, official-description paste, false balance, vocabulary overuse, clone signals, invented narrative backstory, and sponsorship or campaign mentions in the body. Forward all detected violations to RULE-7014 for rejection.
 - Reason: The negative filter is the deterministic pre-validation pass that feeds the final reject gate.
-- Dependencies: RULE-7014, RULE-8001, RULE-8002, RULE-8003, RULE-8004, RULE-8005, RULE-8006, RULE-8007, RULE-8008, RULE-8009, RULE-8010, RULE-8011, RULE-8012, RULE-8013
+- Dependencies: RULE-7014, RULE-8001, RULE-8002, RULE-8003, RULE-8004, RULE-8005, RULE-8006, RULE-8007, RULE-8008, RULE-8009, RULE-8010, RULE-8011, RULE-8012, RULE-8013, RULE-8015, RULE-8016
 - Override: Detected violations MUST be rewritten before output.
+
+### RULE-8015
+
+- Priority: Critical
+- Type: NEVER
+- Description: Never invent narrative backstory that is not supplied by user input or source material. Forbidden inventions include: visit motivations (부모님 방문, 데이트, 출장 등), recommender sources (지인 추천, 친구 소개, SNS 후기 등), companion identity or count, observed other patrons or their behavior, prior visit history, and any scene the author did not witness. When narrative context is missing, omit the framing entirely; do not substitute a campaign-context opening (see RULE-8016 for the sponsorship-mention prohibition).
+- Reason: Backstory fabrication is a distinct failure mode from detail-level fabrication (RULE-3018): it manufactures a false persona-context rather than a false object, and is undetectable to the negative filter unless enumerated separately.
+- Dependencies: RULE-1006, RULE-7014, RULE-3018
+- Override: Detected backstory inventions MUST be replaced with evidence-only framing before output.
+
+### RULE-8016
+
+- Priority: Critical
+- Type: NEVER
+- Description: Never mention sponsorship, campaign, or promotional-arrangement terms inside the article body. Forbidden mentions include but are not limited to: 체험단, 협찬, 원고료, 소정의 원고료를 받았습니다, 제품/식사 제공받았습니다, 협업, 광고, 리뷰어 선정, 무상 제공. Statutory disclosure notices (e.g., 표시광고법 고지 문구, 대가성 표기 이미지) are handled outside the article body and MUST NOT be paraphrased into narrative prose.
+- Reason: Sponsorship mentions inside the body break the neighbor-conversation stance (RULE-1004) and shift the article into promotional posture (RULE-1013, RULE-8002), regardless of whether the underlying visit was compensated. Legal disclosure requirements are satisfied by dedicated notice elements outside the narrative, not by narrative framing.
+- Dependencies: RULE-1004, RULE-1013, RULE-7011, RULE-8002
+- Override: If a campaign disclosure is legally required, place it as a separate notice element outside the article body; the body itself remains sponsorship-free.

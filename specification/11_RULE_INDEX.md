@@ -134,6 +134,7 @@ execution_position: 11
 | RULE-3015 | SHOULD | Product sequence |
 | RULE-3016 | SHOULD | Beauty sequence |
 | RULE-3017 | SHOULD | Experience sequence |
+| RULE-3018 | NEVER | No invented concrete details |
 
 ### Framework Engine (04)
 
@@ -208,6 +209,7 @@ execution_position: 11
 | RULE-7013 | MUST | Output readiness |
 | RULE-7014 | MUST | Final reject gate |
 | RULE-7015 | MUST | Rewind to failed module |
+| RULE-7016 | MUST | Traceability scan for fabrication |
 
 ### Negative Rules (08)
 
@@ -227,6 +229,8 @@ execution_position: 11
 | RULE-8012 | SHOULD | Avoid expression overuse |
 | RULE-8013 | NEVER | No cloned articles |
 | RULE-8014 | MUST | Negative quality gate |
+| RULE-8015 | NEVER | No invented backstory |
+| RULE-8016 | NEVER | No sponsorship mention in body |
 
 ### Memory Engine (09)
 
@@ -269,12 +273,12 @@ execution_position: 11
 | 00 Master | 15 |
 | 01 Identity | 13 |
 | 02 Global Rules | 14 |
-| 03 Writing Engine | 17 |
+| 03 Writing Engine | 18 |
 | 04 Framework Engine | 13 |
 | 05 Voice Engine | 12 |
 | 06 Reasoning Engine | 14 |
-| 07 Validation Engine | 15 |
-| 08 Negative Rules | 14 |
+| 07 Validation Engine | 16 |
+| 08 Negative Rules | 16 |
 | 09 Memory Engine | 13 |
 | 10 Execution Pipeline | 11 |
-| **Total** | **151** |
+| **Total** | **155** |

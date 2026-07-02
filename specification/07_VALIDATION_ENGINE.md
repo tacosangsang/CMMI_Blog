@@ -169,3 +169,12 @@ Canonical merge of `09_CMMI Blog Input Validation Spec.pdf`. Final-reject criter
 - Reason: Surface rewrites of structural failures regenerate the same defects.
 - Dependencies: RULE-7014
 - Override: None
+
+### RULE-7016
+
+- Priority: Critical
+- Type: MUST
+- Description: At final validation, scan the draft for concrete specifics (named menu items, side dish lists, ingredients, quantities, prices, colors, brand names, counts, patron observations) and for narrative backstory (visit motivation, recommender source, companion identity, prior visits) that are not traceable to the confirmed input set from RULE-7008. Any untraceable specific or backstory element MUST be flagged and rejected under RULE-7014.
+- Reason: RULE-7014's general "reads like AI or template" gate does not deterministically catch quiet, plausible fabrications; a dedicated traceability scan is required to enforce RULE-3018 and RULE-8015 at the output boundary.
+- Dependencies: RULE-7008, RULE-7014, RULE-3018, RULE-8015
+- Override: Untraceable specifics MUST be removed, replaced with `[확인 필요]`, or resolved via RULE-7004 clarification before output.

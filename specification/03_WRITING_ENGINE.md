@@ -179,3 +179,12 @@ Canonical merge of `02_CMMI Blog Writing Specification.pdf`. Cross-references re
 - Reason: Experience content should read as story rather than static information.
 - Dependencies: RULE-4007
 - Override: None
+
+### RULE-3018
+
+- Priority: Critical
+- Type: NEVER
+- Description: Never invent concrete details that are not present in user input, source material, or confirmed experience. Concrete details include but are not limited to: menu items, side dish names, ingredient lists, quantities, portion counts, prices, colors, brand names, dish counts, table counts, staff behavior specifics, other patrons' presence or count, decor items, and any other named specifics. When such a detail is required by flow but not supplied, leave a `[확인 필요]` placeholder or omit the detail; do not fabricate.
+- Reason: Detail-level fabrication is the most common failure mode of experience-first writing and directly violates RULE-1006 at paragraph granularity.
+- Dependencies: RULE-1006, RULE-7008
+- Override: Overrides any flow rule that would otherwise motivate invented specifics.
