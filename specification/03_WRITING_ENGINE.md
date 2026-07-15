@@ -197,3 +197,39 @@ Canonical merge of `02_CMMI Blog Writing Specification.pdf`. Cross-references re
 - Reason: Naver mobile viewports wrap long sentences awkwardly, splitting words or particles across lines and reducing readability. Fixed short-line formatting is the platform-native convention that preserves the neighbor-conversation cadence on the primary reading surface.
 - Dependencies: RULE-3008, RULE-3009
 - Override: Overrides desktop-oriented long-line formatting when output targets Naver mobile.
+
+### RULE-3020
+
+- Priority: High
+- Type: MUST
+- Description: Place the primary keyword naturally inside the opening section (first one or two paragraphs), woven into the visit motivation or search context (e.g., "수원 콜키지프리 가능한 갈빗집을 찾다 눈에 띈"). Do not defer the first primary-keyword occurrence to the middle or ending of the article.
+- Reason: Early keyword placement serves both search relevance and reader orientation, and reads natural when fused with the motivation sentence rather than appended.
+- Dependencies: RULE-2005, RULE-7010, RULE-3002
+- Override: Naturalness still wins per RULE-2005; if the opening cannot host the keyword naturally, place it at the earliest natural point.
+
+### RULE-3021
+
+- Priority: Medium
+- Type: SHOULD
+- Description: Format the basic-information block with emoji labels (📫 주소, 📞 전화, ⏰ 영업시간) and close it with a one-line facility summary using ✅ (e.g., 주차 가능, 배달, 예약, 포장, 무료 콜키지, 단체 가능). Include only facilities confirmed by input or observation.
+- Reason: Emoji-labeled compact blocks scan faster on mobile than plain bullets and consolidate practical facts the reader would otherwise hunt for.
+- Dependencies: RULE-3004, RULE-3018
+- Override: Unconfirmed facilities MUST be omitted from the summary line.
+
+### RULE-3022
+
+- Priority: Medium
+- Type: SHOULD
+- Description: Do not list itemized menu prices as a table or bullet run. Mention a price only when it is attached to a personal value judgment (e.g., "밥맛만 놓고 봐도 2,000원이 아깝지 않았어요").
+- Reason: Price tables read as directory information and break the experience-first voice; selectively cited prices carry opinion and remain useful.
+- Dependencies: RULE-3004, RULE-6009
+- Override: Include fuller pricing only when the user explicitly requires it.
+
+### RULE-3023
+
+- Priority: Medium
+- Type: SHOULD
+- Description: When a verified next-visit signal exists (coupon received, event participation, concrete revisit plan), close the article with it as the final personal note, and append a hashtag block of roughly 20 tags composed from: (1) confirmed keywords and their 맛집 variants (하남쭈꾸미 → 하남쭈꾸미맛집), (2) location variants (동/역/상권 단위), (3) store name and its spelling variants, (4) menu and cooking-method tags (불쭈꾸미, 직화쭈꾸미, 무쇠웍), (5) situation tags matching the article's target readers (가족외식, 점심, 데이트). Use only tags grounded in the confirmed keyword set and article content.
+- Reason: A concrete revisit signal is the most credible non-promotional ending, and a ~20-tag block spanning keyword, location, menu, and situation variants is the platform-native discovery surface pattern observed in the author's published posts.
+- Dependencies: RULE-3012, RULE-1006, RULE-7010
+- Override: Never invent coupons, events, or revisit plans; without a verified signal, end per RULE-3012 alone. Never add tags for menus, locations, or situations absent from the article.

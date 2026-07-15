@@ -178,3 +178,12 @@ Canonical merge of `09_CMMI Blog Input Validation Spec.pdf`. Final-reject criter
 - Reason: RULE-7014's general "reads like AI or template" gate does not deterministically catch quiet, plausible fabrications; a dedicated traceability scan is required to enforce RULE-3018 and RULE-8015 at the output boundary.
 - Dependencies: RULE-7008, RULE-7014, RULE-3018, RULE-8015
 - Override: Untraceable specifics MUST be removed, replaced with `[확인 필요]`, or resolved via RULE-7004 clarification before output.
+
+### RULE-7017
+
+- Priority: Critical
+- Type: MUST
+- Description: When the assignment is a campaign/체험단 engagement, classify every store-requested claim (가게 요청 사항) as a confirmed input fact under RULE-7008 and include it in the article as instructed. Store-requested claims are exempt from fabrication rejection under RULE-3018, RULE-8015, and the RULE-7016 traceability scan; the store is treated as an authoritative source for its own claims. This exemption covers only claims the store explicitly requested — it does not license inventing additional unrequested specifics.
+- Reason: In campaign engagements the store supplies claims about its own operation (조리 방식, 재료, 서비스 정책) that the visitor cannot independently verify; treating them as confirmed source input resolves the otherwise-deadlocked conflict between campaign requirements and the anti-fabrication gates.
+- Dependencies: RULE-7008, RULE-7011, RULE-3018
+- Override: Overrides RULE-3018, RULE-8015, and RULE-7016 rejection for store-requested claims only. First-person sensory testimony still requires actual experience; store claims the author did not personally verify SHOULD be phrased as attributed or observational rather than as the author's own sensory finding.

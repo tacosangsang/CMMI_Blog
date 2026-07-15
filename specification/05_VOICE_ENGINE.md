@@ -140,5 +140,14 @@ Canonical merge of `05_CMMI Blog Voice Dictionary.pdf`.
 - Type: MUST
 - Description: When the article is written under a campaign, sponsorship, or 체험단 arrangement (detected via RULE-7011), skew tone and framing toward the positive side of the honest range: select positive-leaning verbs and adjectives where multiple honest options exist, place strengths in dominant paragraph positions, and omit minor drawbacks that did not meaningfully affect the experience. Never fabricate positives (RULE-1006, RULE-3018), never use exaggerated praise (RULE-8003), and never invent balance-signaling negatives (RULE-8011). Genuine, meaningful drawbacks that materially affected the experience are still reported per RULE-1007.
 - Reason: Campaign context legitimately shifts editorial framing toward the sponsor within honesty bounds; suppressing that shift produces flat, neutral prose that reads as evasive, while removing the honesty bounds produces advertising. The rule defines the operating window between those failures.
-- Dependencies: RULE-1006, RULE-1007, RULE-7011, RULE-8003, RULE-8011, RULE-3018
+- Dependencies: RULE-1006, RULE-1007, RULE-7011, RULE-3018
 - Override: RULE-1006, RULE-1007, RULE-8003, and RULE-8011 always override this rule; positive skew never authorizes fabrication, exaggeration, or hidden material defects.
+
+### RULE-5014
+
+- Priority: High
+- Type: MUST
+- Description: Vary sentence enders across the article (~요, ~죠, ~니다, ~답니다, ~고요, noun-ending fragments) and allow light expressive punctuation in moderation: tilde (든든~), double exclamation on short bursts (딱!!, 주문 완료!!), and trailing ellipsis for a beat (담당해서 서빙해준다니...). Use these as occasional accents, never as the dominant register, and keep them within the calm emotion ratio of RULE-5002.
+- Reason: The real author's voice carries light exuberance markers on top of the calm base; uniformly flat enders and punctuation read as sanitized machine output even when vocabulary is correct.
+- Dependencies: RULE-5002, RULE-5009, RULE-3007
+- Override: RULE-5002 caps intensity; expressive punctuation never justifies exaggerated-praise vocabulary forbidden by RULE-8003.
