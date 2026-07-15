@@ -149,3 +149,12 @@ Canonical merge of `06_CMMI Blog Reasoning Engine.pdf`.
 - Reason: The master reasoning objective is believable memory reconstruction.
 - Dependencies: RULE-2001
 - Override: Overrides template-driven generation.
+
+### RULE-6015
+
+- Priority: Medium
+- Type: SHOULD
+- Description: Connect observations to the true season, weather, or situational context of the visit when it strengthens the point (e.g., "안 그래도 더운 여름에 테이블 직화구이는 힘든 일이거든요" before praising kitchen-side grilling). Use only context that actually applied at the visit time.
+- Reason: Situational grounding turns a feature statement into a lived judgment and is a strong authenticity signal a template cannot fake.
+- Dependencies: RULE-2003, RULE-6003
+- Override: Never assert seasonal or situational context that did not apply.

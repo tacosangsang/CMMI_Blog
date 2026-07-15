@@ -136,6 +136,10 @@ execution_position: 11
 | RULE-3017 | SHOULD | Experience sequence |
 | RULE-3018 | NEVER | No invented concrete details |
 | RULE-3019 | MUST | Naver mobile line breaks |
+| RULE-3020 | MUST | Primary keyword in opening |
+| RULE-3021 | SHOULD | Emoji info block + facility summary |
+| RULE-3022 | SHOULD | Selective price mention |
+| RULE-3023 | SHOULD | Next-visit ending + hashtag block |
 
 ### Framework Engine (04)
 
@@ -172,6 +176,7 @@ execution_position: 11
 | RULE-5011 | SHOULD | Soft recommendation phrasing |
 | RULE-5012 | MUST | Thinking over word mimicry |
 | RULE-5013 | MUST | Positive skew under campaign |
+| RULE-5014 | MUST | Ender variety + expressive accents |
 
 ### Reasoning Engine (06)
 
@@ -191,6 +196,7 @@ execution_position: 11
 | RULE-6012 | MUST | Paragraph self-questions |
 | RULE-6013 | MUST | Pre-draft filter |
 | RULE-6014 | MUST | Memory-like thinking |
+| RULE-6015 | SHOULD | Situational grounding |
 
 ### Validation Engine (07)
 
@@ -275,12 +281,12 @@ execution_position: 11
 | 00 Master | 15 |
 | 01 Identity | 13 |
 | 02 Global Rules | 14 |
-| 03 Writing Engine | 19 |
+| 03 Writing Engine | 23 |
 | 04 Framework Engine | 13 |
-| 05 Voice Engine | 13 |
-| 06 Reasoning Engine | 14 |
+| 05 Voice Engine | 14 |
+| 06 Reasoning Engine | 15 |
 | 07 Validation Engine | 16 |
 | 08 Negative Rules | 16 |
 | 09 Memory Engine | 13 |
 | 10 Execution Pipeline | 11 |
-| **Total** | **157** |
+| **Total** | **163** |
