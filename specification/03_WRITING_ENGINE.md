@@ -229,7 +229,7 @@ Canonical merge of `02_CMMI Blog Writing Specification.pdf`. Cross-references re
 
 - Priority: Medium
 - Type: SHOULD
-- Description: When a verified next-visit signal exists (coupon received, event participation, concrete revisit plan), close the article with it as the final personal note, and append a hashtag block derived from the confirmed keyword set (primary, secondary, and location-brand variants).
-- Reason: A concrete revisit signal is the most credible non-promotional ending, and the hashtag block is the platform-native discovery surface for the confirmed keywords.
+- Description: When a verified next-visit signal exists (coupon received, event participation, concrete revisit plan), close the article with it as the final personal note, and append a hashtag block of roughly 20 tags composed from: (1) confirmed keywords and their 맛집 variants (하남쭈꾸미 → 하남쭈꾸미맛집), (2) location variants (동/역/상권 단위), (3) store name and its spelling variants, (4) menu and cooking-method tags (불쭈꾸미, 직화쭈꾸미, 무쇠웍), (5) situation tags matching the article's target readers (가족외식, 점심, 데이트). Use only tags grounded in the confirmed keyword set and article content.
+- Reason: A concrete revisit signal is the most credible non-promotional ending, and a ~20-tag block spanning keyword, location, menu, and situation variants is the platform-native discovery surface pattern observed in the author's published posts.
 - Dependencies: RULE-3012, RULE-1006, RULE-7010
-- Override: Never invent coupons, events, or revisit plans; without a verified signal, end per RULE-3012 alone.
+- Override: Never invent coupons, events, or revisit plans; without a verified signal, end per RULE-3012 alone. Never add tags for menus, locations, or situations absent from the article.
