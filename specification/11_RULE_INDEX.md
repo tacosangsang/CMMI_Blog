@@ -218,6 +218,7 @@ execution_position: 11
 | RULE-7014 | MUST | Final reject gate |
 | RULE-7015 | MUST | Rewind to failed module |
 | RULE-7016 | MUST | Traceability scan for fabrication |
+| RULE-7017 | MUST | Store-requested claims as confirmed input |
 
 ### Negative Rules (08)
 
@@ -285,8 +286,8 @@ execution_position: 11
 | 04 Framework Engine | 13 |
 | 05 Voice Engine | 14 |
 | 06 Reasoning Engine | 15 |
-| 07 Validation Engine | 16 |
+| 07 Validation Engine | 17 |
 | 08 Negative Rules | 16 |
 | 09 Memory Engine | 13 |
 | 10 Execution Pipeline | 11 |
-| **Total** | **163** |
+| **Total** | **164** |
