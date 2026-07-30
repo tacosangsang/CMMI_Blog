@@ -220,10 +220,10 @@ Canonical merge of `02_CMMI Blog Writing Specification.pdf`. Cross-references re
 
 - Priority: Medium
 - Type: SHOULD
-- Description: Do not list itemized menu prices as a table or bullet run. Mention a price only when it is attached to a personal value judgment (e.g., "밥맛만 놓고 봐도 2,000원이 아깝지 않았어요").
-- Reason: Price tables read as directory information and break the experience-first voice; selectively cited prices carry opinion and remain useful.
+- Description: Do not list itemized menu prices as an aggregated table or bullet run. Two placements are allowed: (1) a single bare price as a per-dish caption label at the point the dish is introduced (dish name + price on its own line, e.g., "불쭈차돌덮밥 16,000원"), with the value or portion judgment carried in the surrounding prose rather than welded to the number; (2) a price cited inline with an explicit value judgment (e.g., "밥맛만 놓고 봐도 2,000원이 아깝지 않았어요"). The prohibition targets a consolidated price run detached from any dish experience, not the per-dish caption label.
+- Reason: Aggregated price tables read as directory information and break the experience-first voice; a per-dish caption label anchors the price to the dish being reviewed, and the nearby prose supplies the opinion. The author's published posts state each dish's price plainly at its photo, not in a menu list.
 - Dependencies: RULE-3004, RULE-6009
-- Override: Include fuller pricing only when the user explicitly requires it.
+- Override: Include fuller pricing only when the user explicitly requires it. Prices MUST still be confirmed input per RULE-3018; never fabricate a caption-label price.
 
 ### RULE-3023
 
@@ -233,3 +233,12 @@ Canonical merge of `02_CMMI Blog Writing Specification.pdf`. Cross-references re
 - Reason: A concrete revisit signal is the most credible non-promotional ending, and a ~20-tag block spanning keyword, location, menu, and situation variants is the platform-native discovery surface pattern observed in the author's published posts.
 - Dependencies: RULE-3012, RULE-1006, RULE-7010
 - Override: Never invent coupons, events, or revisit plans; without a verified signal, end per RULE-3012 alone. Never add tags for menus, locations, or situations absent from the article.
+
+### RULE-3024
+
+- Priority: Medium
+- Type: SHOULD
+- Description: When stating a subjective intensity that the reader cannot calibrate on their own (spice level, portion size, wait time, brightness, sweetness), anchor it to a widely shared reference the reader already knows (e.g., "보통맛(신라면 맵기)", "2인분에 가까운 양"). Use the anchor only when it reflects the actual experience; do not manufacture a comparison for effect.
+- Reason: A subjective scale label ("보통맛") is not actionable on its own; anchoring it to a common reference converts opinion into a decision-useful signal and reads as lived judgment rather than filler. Observed in the author's published posts.
+- Dependencies: RULE-2004, RULE-3006, RULE-2007
+- Override: Never fabricate the anchor or the intensity itself (RULE-3018); omit when no honest reference applies.
