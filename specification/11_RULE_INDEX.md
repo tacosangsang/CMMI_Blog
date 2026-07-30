@@ -140,6 +140,7 @@ execution_position: 11
 | RULE-3021 | SHOULD | Emoji info block + facility summary |
 | RULE-3022 | SHOULD | Selective price mention |
 | RULE-3023 | SHOULD | Next-visit ending + hashtag block |
+| RULE-3024 | SHOULD | Calibration anchor for subjective scales |
 
 ### Framework Engine (04)
 
@@ -282,7 +283,7 @@ execution_position: 11
 | 00 Master | 15 |
 | 01 Identity | 13 |
 | 02 Global Rules | 14 |
-| 03 Writing Engine | 23 |
+| 03 Writing Engine | 24 |
 | 04 Framework Engine | 13 |
 | 05 Voice Engine | 14 |
 | 06 Reasoning Engine | 15 |
@@ -290,4 +291,4 @@ execution_position: 11
 | 08 Negative Rules | 16 |
 | 09 Memory Engine | 13 |
 | 10 Execution Pipeline | 11 |
-| **Total** | **164** |
+| **Total** | **165** |
